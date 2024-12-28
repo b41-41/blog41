@@ -1,5 +1,5 @@
 import FullscreenOverlay from '@/common/FullscreenOverlay';
-import Home from '@/components/home';
+import Home from '@/components/Home';
 import HomeOverlay from '@/components/HomeOverlay';
 
 export default function HomePage() {

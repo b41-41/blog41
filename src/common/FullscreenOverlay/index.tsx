@@ -16,8 +16,9 @@ const FullscreenOverlay = ({children}: FullscreenOverlayProps) => {
 
   return (
     <main 
-      className={`w-full h-full z-highest`}
+      className={`fixed w-screen h-screen z-highest top-0 left-0`}
       onClick={handleClickOutside}
+      style={{position: 'fixed'}}
     >
       {children}
     </main>
