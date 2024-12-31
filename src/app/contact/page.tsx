@@ -1,9 +1,16 @@
-import React from 'react'
+import FullscreenOverlay from '@/common/FullscreenOverlay';
+import ContactOverlay from '@/components/ContactOverlay';
+import React from 'react';
 
 const ContactPage = () => {
   return (
-	<div>page</div>
-  )
-}
+    <>
+      <FullscreenOverlay>
+        <ContactOverlay />
+      </FullscreenOverlay>
+      <div>page</div>
+    </>
+  );
+};
 
-export default ContactPage
+export default ContactPage;

@@ -1,9 +1,16 @@
-import React from 'react'
+import FullscreenOverlay from '@/common/FullscreenOverlay';
+import PortfolioOverlay from '@/components/PortfolioOverlay';
+import React from 'react';
 
 const PortfolioPage = () => {
   return (
-	<div>Portfolio</div>
-  )
-}
+    <>
+      <FullscreenOverlay>
+        <PortfolioOverlay />
+      </FullscreenOverlay>
+      <div>Portfolio</div>
+    </>
+  );
+};
 
-export default PortfolioPage
+export default PortfolioPage;
