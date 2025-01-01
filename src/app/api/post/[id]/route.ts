@@ -1,7 +1,8 @@
 import { MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest) {
   try {
     console.log('MongoDB 연결 시도중...');
     const client = await MongoClient.connect(process.env.NEXT_PUBLIC_DB_URL as string, {
@@ -15,7 +16,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
     const db = client.db(process.env.NEXT_PUBLIC_DB_KEY);
     console.log(`데이터베이스 ${process.env.NEXT_PUBLIC_DB_KEY} 접속 성공`);
 
-	const { id } = await params
+    const id = request.nextUrl.searchParams.get('id');
     
     const post = await db.collection('posts').findOne({ postId: id });
     console.log('포스트 조회 결과:', post ? '성공' : '실패');
