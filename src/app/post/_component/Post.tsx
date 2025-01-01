@@ -14,14 +14,14 @@ interface PostProps extends PostType {
 
 const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
   return (
-    <article className="flex w-full flex-col items-center justify-center gap-4 p-4">
-      <div className="border-normal flex w-full flex-col items-center justify-center gap-4 rounded border-primary-dark p-4">
+    <article className="flex w-full flex-col items-center justify-center gap-4 py-4">
+      <div className="border-normal flex w-full flex-col items-center justify-center gap-4 rounded border-primary-dark bg-white p-4">
         <h1 className="text-4xl font-bold">{title}</h1>
         <p className="text-2xl">{description}</p>
         <p className="text-secondary-dark text-2xl">created at: {createdAt}</p>
       </div>
       <Tags tags={tags} />
-      <p className="my-4 text-2xl">{content}</p>
+      <p className="border-normal rounded border-primary-dark bg-white p-4 text-2xl">{content}</p>
     </article>
   );
 };
