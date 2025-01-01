@@ -2,11 +2,11 @@ import type { MenuItemType } from '@/common/type';
 import Link from 'next/link';
 import React from 'react';
 
-interface MenuItemProps extends MenuItemType {}
+interface MenuItemProps extends MenuItemType {}1
 
-const MenuItem = ({ title, href }: MenuItemProps) => {
+const MenuItem = ({ title, href, key }: MenuItemProps) => {
   return (
-    <Link href={href}>
+    <Link href={href} key={key}>
       <div className="border-normal flex h-[100px] w-[120px] flex-col items-center justify-center overflow-hidden rounded border-primary-dark bg-white">
         <div
           id="color-area"
