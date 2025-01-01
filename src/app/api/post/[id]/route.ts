@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     console.log('포스트 조회 결과:', post ? '성공' : '실패');
 
     await client.close();
-    console.log('MongoDB 연결 종료');
+    console.log('MongoDB 연결 종료!');
 
     if (!post) {
       return NextResponse.json({ error: '포스트를 찾을 수 없습니다.' }, { status: 404 });
