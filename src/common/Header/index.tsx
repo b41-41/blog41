@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
+import { MENU_ITEMS } from '../constants';
+import MenuItem from '@/components/MenuItem';
 
 const Header = () => {
   return (
@@ -11,12 +13,8 @@ const Header = () => {
       >
         <Image src="/logo.png" alt="blog41" width={200} height={200} className="object-contain" />
       </div>
-      <div className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 bg-red-100">
-        <div className="flex gap-4">
-          <Link href="/">홈</Link>
-          <Link href="/portfolio">포트폴리오</Link>
-          <Link href="/contact">연락하기</Link>
-        </div>
+      <div className="absolute bottom-[-20px] left-1/2 -translate-x-1/2">
+        <div className="flex gap-4">{MENU_ITEMS.map(MenuItem)}</div>
       </div>
     </header>
   );

@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col items-center">
+      <body className="flex flex-col items-center bg-yellow-100">
         <div id="container" className="w-full max-w-[1000px] px-4">
           <Header />
           <main className="flex w-full flex-col items-center gap-4">{children}</main>
