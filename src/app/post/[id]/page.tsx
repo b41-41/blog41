@@ -14,7 +14,8 @@ export default async function PostPage() {
     <>
       <FullscreenOverlay>
         <PostOverlay
-          id="post-1"
+          postId="post-1"
+          order={0}
           title="Next.js로 블로그 만들기"
           description="Next.js와 TypeScript를 활용한 개인 블로그 제작기"
           tags={['Next.js', 'React', 'TypeScript', '블로그']}
@@ -23,7 +24,8 @@ export default async function PostPage() {
         />
       </FullscreenOverlay>
       <Post
-        id="post-1"
+        postId="post-1"
+        order={0}
         title="Next.js로 블로그 만들기"
         description="Next.js와 TypeScript를 활용한 개인 블로그 제작기"
         tags={['Next.js', 'React', 'TypeScript', '블로그']}
