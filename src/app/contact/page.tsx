@@ -1,5 +1,5 @@
 import FullscreenOverlay from '@/common/FullscreenOverlay';
-import ContactOverlay from '@/components/ContactOverlay';
+import ContactOverlay from '@/app/contact/_component/ContactOverlay';
 import React from 'react';
 
 const ContactPage = () => {
