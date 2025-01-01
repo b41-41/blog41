@@ -16,7 +16,6 @@ export async function GET(request: Request, { params }: { params: { id: string }
     console.log(`데이터베이스 ${process.env.NEXT_PUBLIC_DB_KEY} 접속 성공`);
 
 	const { id } = await params
-    console.log("🚀 ~ GET ~ postId:", id)
     
     const post = await db.collection('posts').findOne({ postId: id });
     console.log('포스트 조회 결과:', post ? '성공' : '실패');

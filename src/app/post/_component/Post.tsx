@@ -21,7 +21,11 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
         <p className="text-secondary-dark text-2xl">created at: {createdAt}</p>
       </div>
       <Tags tags={tags} />
-      <p className="border-normal rounded border-primary-dark bg-white p-4 text-2xl">{content}</p>
+
+<section className="w-full border-normal rounded border-primary-dark bg-white p-4 text-2xl">
+      <p >{content}</p>
+
+</section>
     </article>
   );
 };

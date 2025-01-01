@@ -5,7 +5,7 @@ import PostOverlay from '../_component/PostOverlay';
 
 export async function generateStaticParams() {
   try {
-    const response = await fetch(`http://localhost:3000/api/posts`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
       cache: 'force-cache'  // SSG를 위한 설정
     });
     const posts = await response.json();
@@ -21,12 +21,10 @@ export async function generateStaticParams() {
   }
 }
 
-// SSG를 위해 async 컴포넌트로 변경 
 export default async function PostPage({ params }: { params: { id: string } }) {
-  const id = params.id; // 비동기 처리
+  const {id} = await params; 
 
-
-  const response = await fetch(`http://localhost:3000/api/post/${id}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/${id}`, {
     cache: 'force-cache'  // SSG를 위한 설정
   });
   
