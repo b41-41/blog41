@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 import Header from '@/common/Header';
 
-
 export const metadata: Metadata = {
-  title: "Blog 41",
-  description: "Blog 41 by b41",
+  title: 'Blog 41',
+  description: 'Blog 41 by b41',
 };
 
 export default function RootLayout({
@@ -16,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col items-center">
-        <Header />
-        {children}
+        <div id="container" className="w-full max-w-[1000px] px-4">
+          <Header />
+          <main className="flex w-full flex-col items-center gap-4">{children}</main>
+        </div>
       </body>
     </html>
   );

@@ -3,8 +3,8 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className="relative mb-[50px] flex w-[1000px] flex-col">
-      <div className="flex h-[270px] w-[1000px] justify-center rounded-b-md border-x-2 border-b-2 border-primary-dark align-middle">
+    <header className="relative mb-[50px] flex w-full flex-col">
+      <div className="flex h-[270px] w-full justify-center rounded-b-md border-x-2 border-b-2 border-primary-dark align-middle">
         header 이미지 영역
       </div>
       <div className="absolute bottom-[-20px] left-1/2 -translate-x-1/2 bg-red-100">
