@@ -20,8 +20,17 @@ const FullscreenOverlay = ({ children }: FullscreenOverlayProps) => {
       }
     };
 
+    const handleWheel = () => {
+      setIsShow(false);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('wheel', handleWheel);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('wheel', handleWheel);
+    };
   }, []);
 
   if (!isShow) return null;
