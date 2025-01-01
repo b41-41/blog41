@@ -20,6 +20,9 @@ export default {
           green: '#15803d', // 봄
           yellow: '#ca8a04', // 여름
         },
+        secondary: {
+          dark: '#1f2937', // 어두운 톤
+        },
         text: {
           primary: '#1a1a1a',
           secondary: '#4b5563',

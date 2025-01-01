@@ -1,5 +1,6 @@
 import React from 'react';
 import { PostType } from '../post.type';
+import Tags from '@/components/Tags';
 
 interface PostProps extends PostType {
   //   updatedAt: string;
@@ -11,12 +12,15 @@ interface PostProps extends PostType {
   //   comments: number;
 }
 
-const Post = ({ title, description, tags, content }: PostProps) => {
+const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
   return (
     <article className="flex w-full flex-col items-center justify-center gap-4 p-4">
-      <h1 className="text-4xl font-bold">{title}</h1>
-      <p className="text-2xl">{description}</p>
-      <p className="text-2xl">{tags.join(', ')}</p>
+      <div className="border-normal flex w-full flex-col items-center justify-center gap-4 rounded border-primary-dark p-4">
+        <h1 className="text-4xl font-bold">{title}</h1>
+        <p className="text-2xl">{description}</p>
+        <p className="text-secondary-dark text-2xl">created at: {createdAt}</p>
+      </div>
+      <Tags tags={tags} />
       <p className="my-4 text-2xl">{content}</p>
     </article>
   );

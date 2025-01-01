@@ -1,6 +1,7 @@
 import FullscreenOverlay from '@/common/FullscreenOverlay';
 import ContactOverlay from '@/app/contact/_component/ContactOverlay';
 import React from 'react';
+import Contact from './_component/Contact';
 
 const ContactPage = () => {
   return (
@@ -8,7 +9,7 @@ const ContactPage = () => {
       <FullscreenOverlay>
         <ContactOverlay />
       </FullscreenOverlay>
-      <div>page</div>
+      <Contact />
     </>
   );
 };
