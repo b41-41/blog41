@@ -16,10 +16,11 @@ export async function GET(request: NextRequest) {
     const db = client.db(process.env.NEXT_PUBLIC_DB_KEY);
     console.log(`데이터베이스 ${process.env.NEXT_PUBLIC_DB_KEY} 접속 성공`);
 
-    const id = request.nextUrl.searchParams.get('id');
+    const urlParts = request.url.split('/');
+    const id = urlParts[urlParts.length - 1];
     
     const post = await db.collection('posts').findOne({ postId: id });
-    console.log('포스트 조회 결과:', post ? '성공' : '실패');
+    console.log('포스트 조회 결과:', post ? '성공' : '실패', 'id:', id);
 
     await client.close();
     console.log('MongoDB 연결 종료!');

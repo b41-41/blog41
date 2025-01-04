@@ -11,7 +11,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const { id } = await params;  
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/${id}`, {
-    cache: 'force-cache'  // SSG를 위한 설정
+    cache: 'force-cache' 
   });
   
   if (!response.ok) {
