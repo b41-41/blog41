@@ -1,13 +1,25 @@
 import React from 'react';
 import Tag from './Tag';
 
-const DUMMY_TAGS = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5'];
+async function getTags() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tags`, {
+    cache: 'force-cache' 
+  });
 
-const Tags = ({ tags }: { tags?: string[] }) => {
-  const tagsMap = tags || DUMMY_TAGS;
+  if (!response.ok) {
+    throw new Error('포스트를 가져오는데 실패했습니다');
+  }
+
+  return response.json();
+}
+
+const Tags = async ({ tags }: { tags?: string[] }) => {
+  const allTags = await getTags();
+  const tagsMap = tags || allTags || [];
+
   return (
     <div className="border-normal rounded-middle flex w-full flex-wrap gap-2 border-primary-dark bg-white p-2">
-      {tagsMap.map((tag) => (
+      {tagsMap.map((tag: string) => (
         <Tag key={tag} text={tag} />
       ))}
     </div>
