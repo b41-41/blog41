@@ -3,7 +3,8 @@ import Tag from './Tag';
 
 async function getTags() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tags`, {
-    cache: 'force-cache' 
+    // cache: 'force-cache' 
+    cache: 'no-store' 
   });
 
   if (!response.ok) {
