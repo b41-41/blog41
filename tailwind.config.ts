@@ -61,6 +61,30 @@ export default {
         large: '8px',
         full: '9999px',
       },
+      keyframes: {
+        carMove: {
+          '0%': { transform: 'translateX(100%)' },
+          '10%': { transform: 'translateX(85%)' },
+          '90%': { transform: 'translateX(-5%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        scaleMove: {
+          '0%': { transform: 'translateX(100%) scale(0.8)' },
+          '50%': { transform: 'translateX(50%) scale(1)' },
+          '100%': { transform: 'translateX(-50%) scale(0.8)' },
+        },
+        shakeMove: {
+          '0%, 100%': { transform: 'translateX(100%) rotate(0deg)' },
+          '25%': { transform: 'translateX(75%) rotate(1deg)' },
+          '50%': { transform: 'translateX(50%) rotate(-1deg)' },
+          '75%': { transform: 'translateX(25%) rotate(0.5deg)' },
+        },
+      },
+      animation: {
+        carMove: 'carMove 3s ease-in-out infinite',
+        scaleMove: 'scaleMove 3s ease-in-out infinite',
+        shakeMove: 'shakeMove 3s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
