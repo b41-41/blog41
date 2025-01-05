@@ -7,7 +7,7 @@ async function getTags() {
   });
 
   if (!response.ok) {
-    throw new Error('포스트를 가져오는데 실패했습니다');
+    throw new Error('태그를 가져오는데 실패했습니다');
   }
 
   return response.json();
