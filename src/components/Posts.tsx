@@ -7,8 +7,8 @@ async function getPosts() {
     headers: {
       'count': '10'
     },
-    // cache: 'force-cache' 
-    cache: 'no-store' 
+    cache: 'force-cache' 
+    // cache: 'no-store' 
   });
 
   if (!response.ok) {
