@@ -22,4 +22,35 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Pretendard, 'Noto Sans', 'Noto Sans JP', sans-serif;
+
+  & ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-left: 1.5rem;
+
+    & p {
+      display: inline;
+    }
+  }
+
+  & ol {
+    list-style-type: decimal; 
+    list-style-position: inside;
+    margin-left: 1.5rem;
+
+    & p {
+      display: inline;
+    }
+  }
+
+  & ul ul,
+  & ol ul {
+    list-style-type: circle;
+    margin-left: 2rem;
+  }
+
+  & ul ul ul,
+  & ol ul ul {
+    list-style-type: square;
+  }
 }

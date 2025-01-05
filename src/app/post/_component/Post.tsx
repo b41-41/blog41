@@ -1,6 +1,8 @@
 import React from 'react';
 import { PostType } from '../post.type';
 import Tags from '@/components/Tags';
+import Markdown from 'react-markdown'
+
 
 interface PostProps extends PostType {
   //   updatedAt: string;
@@ -13,6 +15,7 @@ interface PostProps extends PostType {
 }
 
 const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
+
   return (
     <article className="flex w-full flex-col items-center justify-center gap-4 py-4">
       <div className="border-normal flex w-full flex-col items-center justify-center gap-4 rounded border-primary-dark bg-white p-4">
@@ -23,7 +26,7 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
       <Tags tags={tags} />
 
 <section className="w-full border-normal rounded border-primary-dark bg-white p-4 text-2xl">
-      <p >{content}</p>
+      <Markdown>{content}</Markdown>
 
 </section>
     </article>
