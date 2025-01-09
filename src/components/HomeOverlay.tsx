@@ -1,6 +1,7 @@
 import React from 'react';
 
 const HomeOverlay = () => {
+  // 
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-gradient-to-br from-primary-dark via-primary-blue to-primary-light">
       <h1 className="bg-gradient-to-r from-white via-primary-light to-white bg-clip-text text-4xl font-bold text-transparent">
