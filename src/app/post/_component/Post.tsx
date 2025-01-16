@@ -2,6 +2,7 @@ import React from 'react';
 import { PostType } from '../post.type';
 import Tags from '@/components/Tags';
 import Markdown from 'react-markdown'
+import dayjs from 'dayjs';
 
 
 interface PostProps extends PostType {
@@ -21,11 +22,11 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
       <div className="border-normal flex w-full flex-col items-center justify-center gap-4 rounded border-primary-dark bg-white p-4">
         <h1 className="text-4xl font-bold">{title}</h1>
         <p className="text-2xl">{description}</p>
-        <p className="text-secondary-dark text-2xl">created at: {createdAt}</p>
+        <p className="text-secondary-dark text-2xl">created at: {dayjs(createdAt).format('YYYY.MM.DD')}</p>
       </div>
       <Tags tags={tags} />
 
-<section className="w-full border-normal rounded border-primary-dark bg-white p-4 text-2xl">
+<section className="w-full border-normal rounded border-primary-dark bg-white p-4 ">
       <Markdown>{content}</Markdown>
 
 </section>
