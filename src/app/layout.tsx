@@ -6,6 +6,9 @@ import Footer from '@/common/Footer';
 export const metadata: Metadata = {
   title: 'Blog 41',
   description: 'Blog 41 by b41',
+  icons: {
+    icon: '/favicon.ico',
+  }
 };
 
 export default function RootLayout({
