@@ -13,18 +13,30 @@ export async function GET(request: NextRequest) {
 
     const db = client.db(process.env.NEXT_PUBLIC_DB_KEY);
     
-    const count = request.headers.get('count');
-    const query = db.collection('posts').find().sort({ createdAt: -1 }); // createdAt 필드를 기준으로 내림차순 정렬
+    const searchParams = new URL(request.url).searchParams;
+    const page = parseInt(searchParams.get('page') || '1');
+    const count = parseInt(request.headers.get('count') || '10');
     
-    if (count) {
-      const posts = await query.limit(parseInt(count)).toArray();
-      await client.close();
-      return NextResponse.json(posts);
-    }
+    // 전체 게시물 수 계산
+    const totalPosts = await db.collection('posts').countDocuments();
+    const totalPages = Math.ceil(totalPosts / count);
+    
+    // 페이지네이션 적용
+    const posts = await db.collection('posts')
+      .find()
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * count)
+      .limit(count)
+      .toArray();
 
-    const posts = await query.toArray();
     await client.close();
-    return NextResponse.json(posts);
+    
+    return NextResponse.json({
+      posts,
+      currentPage: page,
+      totalPages,
+      totalPosts
+    });
 
   } catch (error) {
     console.error('데이터베이스 에러:', error);

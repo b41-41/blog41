@@ -17,3 +17,8 @@ export const MENU_ITEMS: MenuItemType[] = [
     href: '/contact',
   },
 ] as const;
+
+export const POSTS_PER_PAGE = 10;
+export const PAGINATION_DISPLAY_COUNT = 5;
+export const RECENT_POSTS_COUNT = 5;
+export const DEFAULT_DATE_FORMAT = 'YYYY.MM.DD';
