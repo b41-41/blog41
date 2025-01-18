@@ -67,7 +67,7 @@ export default async function PostListPage({
   return (
     <div className="border-normal rounded-middle flex w-full flex-col gap-2 border-primary-dark bg-white p-4">
     <div className='flex flex-col items-center justify-center gap-4'>
-      <h1 className='text-4xl font-bold'>Posts</h1>
+      <h1 className='text-4xl font-bold w-full'>Posts</h1>
       <div className='flex flex-col items-center justify-center gap-4 w-full'>
         {posts.map((post: any) => (
           <Link 

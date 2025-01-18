@@ -49,8 +49,8 @@ export default {
         highest: '999',
       },
       borderWidth: {
-        thin: '1px',
-        normal: '2px',
+        thin: '0.5px',
+        normal: '1px',
         thick: '4px',
         heavy: '8px',
       },
