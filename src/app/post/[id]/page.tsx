@@ -12,7 +12,6 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/${id}`, {
     cache: 'force-cache' 
-    // cache: 'no-store' 
   });
   
   if (!response.ok) {
