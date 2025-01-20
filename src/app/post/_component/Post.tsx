@@ -28,16 +28,13 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
       <Tags tags={tags} />
       <section className="w-full border-normal rounded border-primary-dark bg-white p-4">
         <Markdown 
-          className='prose'
+          className='prose w-full max-w-none'
           components={{
             code(props) {
-              console.log("🚀 ~ code ~ props:", props)
               const {children, className, node} = props;
-              // 인라인 코드인 경우 기본 스타일 적용
               if (!node.properties.className) {
                 return <code>{children}</code>
               }
-              // 코드 블록인 경우 CodeBlock 컴포넌트 사용
               const language = className ? className.replace('language-', '') : '';
               return <CodeBlock language={language} value={String(children)} />;
             }
