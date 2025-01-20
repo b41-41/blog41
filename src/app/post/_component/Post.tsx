@@ -23,12 +23,12 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
       <div className="border-normal flex w-full flex-col items-center justify-center gap-4 rounded border-primary-dark bg-white p-4">
         <h1 className="text-4xl font-bold">{title}</h1>
         <p className="text-2xl">{description}</p>
-        <p className="text-secondary-dark text-2xl">created at: {dayjs(createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+        <p className="text-secondary-dark text-xl">작성일 : {dayjs(createdAt).format(DEFAULT_DATE_FORMAT)}</p>
       </div>
       <Tags tags={tags} />
       <section className="w-full border-normal rounded border-primary-dark bg-white p-4">
         <Markdown 
-          className='prose w-full max-w-none'
+          className='prose w-full max-w-none p-4'
           components={{
             code(props) {
               const {children, className, node} = props;
