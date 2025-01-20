@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography'
 
 export default {
   content: [
@@ -85,7 +86,82 @@ export default {
         scaleMove: 'scaleMove 3s ease-in-out forwards',
         shakeMove: 'shakeMove 3s ease-in-out forwards',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            'h1': {
+              fontSize: '2rem',
+              fontWeight: '700',
+              marginBottom: '1rem'
+            },
+            'h2': {
+              fontSize: '1.5rem',
+              fontWeight: '600',
+              marginBottom: '0.75rem'
+            },
+            'p': {
+              marginBottom: '1rem',
+              lineHeight: '1.75'
+            },
+            'code': {
+              backgroundColor: '#f3f4f6',
+              padding: '0.25rem',
+              borderRadius: '0.25rem',
+              fontSize: '0.875rem',
+            },
+            'pre': {
+              backgroundColor: '#f3f4f6',
+              padding: '1rem',
+              borderRadius: '0.5rem',
+              color: 'var(--foreground)',
+              position: 'relative',
+              '&::before': {
+                content: 'attr(data-language)',
+                position: 'absolute',
+                top: '0.25rem',
+                right: '0.5rem',
+                fontSize: '0.75rem', 
+                color: '#666',
+                textTransform: 'uppercase',
+              },
+              '.copy-button': {
+                position: 'absolute',
+                bottom: '0.25rem',
+                right: '0.5rem',
+                padding: '0.25rem 0.5rem',
+                fontSize: '0.75rem',
+                color: '#666',
+                cursor: 'pointer',
+                backgroundColor: 'white',
+                borderRadius: '4px',
+                border: 'none',
+                '&:hover': {
+                  color: '#2563eb',
+                },
+              }
+            },
+            'ul': {
+              listStyleType: 'disc',
+              paddingLeft: '1.5rem',
+              marginBottom: '1rem'
+            },
+            'ol': {
+              listStyleType: 'decimal',
+              paddingLeft: '1.5rem',
+              marginBottom: '1rem'
+            },
+            'a': {
+              color: '#2563eb',
+              '&:hover': {
+                textDecoration: 'underline'
+              }
+            }
+          }
+        }
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    typography,
+  ],
 } satisfies Config;

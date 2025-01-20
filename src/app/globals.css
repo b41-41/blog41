@@ -23,6 +23,10 @@ body {
   background: var(--background);
   font-family: Pretendard, 'Noto Sans', 'Noto Sans JP', sans-serif;
 
+  a {
+    color: var(--foreground);
+  }
+
   & ul {
     list-style-type: disc;
     list-style-position: inside;
@@ -53,4 +57,6 @@ body {
   & ol ul ul {
     list-style-type: square;
   }
+
+
 }
