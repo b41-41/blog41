@@ -24,12 +24,18 @@ const FullscreenOverlay = ({ children }: FullscreenOverlayProps) => {
       setIsShow(false);
     };
 
+    const handleTouch = () => {
+      setIsShow(false);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('wheel', handleWheel);
+    window.addEventListener('touchstart', handleTouch);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('wheel', handleWheel); 
+      window.removeEventListener('touchstart', handleTouch);
     };
   }, []);
 
@@ -41,11 +47,11 @@ const FullscreenOverlay = ({ children }: FullscreenOverlayProps) => {
       onClick={handleClickOutside}
       style={{ position: 'fixed' }}
     >
-      <div className="absolute left-10 top-10 h-[20vh] w-[20vw] p-4">
+      {/* <div className="absolute left-10 top-10 h-[20vh] w-[20vw] p-4">
         <div className="h-full w-full">
           <Image src="/logo.png" alt="blog41" width={200} height={200} className="object-contain" />
         </div>
-      </div>
+      </div> */}
       {children}
     </main>
   );
