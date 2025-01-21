@@ -49,6 +49,15 @@ export default {
         high: '100',
         highest: '999',
       },
+      fontFamily: {
+        righteous: ['Righteous', 'sans-serif'],
+        jua: ['Jua', 'sans-serif'],
+        dela: ['Dela Gothic One', 'sans-serif'],
+        noto: ['Noto Sans', 'sans-serif'],
+        notoJP: ['Noto Sans JP', 'sans-serif'],
+        pretendard: ['Pretendard', 'sans-serif'],
+        title: ['Righteous', 'Jua', 'Dela Gothic One', 'sans-serif'],
+      },
       borderWidth: {
         thin: '0.5px',
         normal: '1px',
