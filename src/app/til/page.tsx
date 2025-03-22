@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default async function TILPage() {
 	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/til`, {
-		cache: 'no-store'
+		cache: 'force-cache'
 	});
 	
 	if (!response.ok) {
