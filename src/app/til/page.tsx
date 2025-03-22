@@ -3,7 +3,7 @@ import { DEFAULT_DATE_FORMAT } from '@/common/constants';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
-export default async function TILPage() {
+async function getTilPosts() {
 	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/til`, {
 		cache: 'force-cache'
 	});
@@ -13,7 +13,11 @@ export default async function TILPage() {
 	}
 	
 	const data = await response.json();
-	const tilPosts = data.posts as PostType[];
+	return data.posts as PostType[];
+}
+
+export default async function TILPage() {
+	const tilPosts = await getTilPosts();
 
 	return (
 		<div className="border-normal rounded-middle flex w-full flex-col gap-2 border-primary-dark bg-white p-4">
@@ -46,6 +50,5 @@ export default async function TILPage() {
 			</div>
 		</div>
 	);
-	return <></>
 }
   

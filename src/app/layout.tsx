@@ -3,6 +3,8 @@ import Script from 'next/script';
 import './globals.css';
 import Header from '@/common/Header';
 import Footer from '@/common/Footer';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 export const metadata: Metadata = {
   title: 'Blog 41',
@@ -36,7 +38,11 @@ export default function RootLayout({
       <body className="flex flex-col items-center bg-yellow-100">
         <div id="container" className="w-full max-w-[1000px] px-4">
           <Header />
-          <main className="flex w-full flex-col items-center gap-4">{children}</main>
+          <main className="flex w-full flex-col items-center gap-4">
+            <Suspense fallback={<Loading />}>
+              {children}
+            </Suspense>
+          </main>
           <Footer />
         </div>
       </body>
