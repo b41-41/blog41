@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     const count = parseInt(request.headers.get('count') || '10');
     
     // "TIL" 태그가 없는 게시물만 필터링하는 쿼리 조건
-    const query = { tags: { $ne: TIL_TAG } };
+    const query = { tags: { $ne: TIL_TAG }, deleted: { $ne: true } };
     
     // 전체 게시물 수 계산 (TIL 태그 제외)
     const totalPosts = await db.collection('posts').countDocuments(query);

@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     const db = client.db(process.env.NEXT_PUBLIC_DB_KEY);
     
     // "TIL" 태그가 있는 게시물만 필터링하는 쿼리 조건
-    const query = { tags: TIL_TAG };
+    const query = { tags: TIL_TAG, deleted: { $ne: true } };
     
     // TIL 태그가 있는 모든 게시물 가져오기 (페이지네이션 없음)
     const posts = await db.collection('posts')

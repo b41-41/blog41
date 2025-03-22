@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
     await client.close();
     console.log('MongoDB 연결 종료!');
 
-    if (!post) {
+    if (!post || post.deleted === true) {
       return NextResponse.json({ error: '포스트를 찾을 수 없습니다.' }, { status: 404 });
     }
 
