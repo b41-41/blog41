@@ -19,7 +19,7 @@ const Tags = async ({ tags }: { tags?: string[] }) => {
 
   return (
     <div className="border-normal rounded-middle flex w-full flex-wrap gap-2 border-primary-dark bg-white p-2">
-      {tagsMap.map((tag: string) => (
+      {tagsMap.slice(0, 5).map((tag: string) => (
         <Tag key={tag} text={tag} />
       ))}
     </div>
