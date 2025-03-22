@@ -10,11 +10,38 @@ interface PostPageProps {
 export default async function PostPage({ params }: PostPageProps) {
   const { id } = await params;  
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/${id}`, {
-    cache: 'force-cache' 
-  });
-  
-  if (!response.ok) {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/${id}`, {
+      cache: 'force-cache' 
+    });
+    
+    const post = await response.json();
+
+    return (
+      <>
+        <FullscreenOverlay>
+          <PostOverlay
+            postId={post.postId}
+            order={post.order}
+            title={post.title}
+            description={post.description}
+            tags={post.tags}
+            content={post.content}
+            createdAt={post.createdAt}
+          />
+        </FullscreenOverlay>
+        <Post
+          postId={post.postId}
+          order={post.order}
+          title={post.title}
+          description={post.description}
+          tags={post.tags}
+          content={post.content}
+          createdAt={post.createdAt}
+        />
+      </>
+    );
+  } catch (error) {
     return (
       <div className="border-normal rounded-middle flex w-full flex-col gap-2 border-primary-dark bg-white p-8 my-8">
         <div className="text-center">
@@ -30,31 +57,4 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
     );
   }
-
-  const post = await response.json();
-
-  return (
-    <>
-      <FullscreenOverlay>
-        <PostOverlay
-          postId={post.postId}
-          order={post.order}
-          title={post.title}
-          description={post.description}
-          tags={post.tags}
-          content={post.content}
-          createdAt={post.createdAt}
-        />
-      </FullscreenOverlay>
-      <Post
-        postId={post.postId}
-        order={post.order}
-        title={post.title}
-        description={post.description}
-        tags={post.tags}
-        content={post.content}
-        createdAt={post.createdAt}
-      />
-    </>
-  );
 }

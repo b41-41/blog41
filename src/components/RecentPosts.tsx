@@ -3,20 +3,20 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 
 async function getRecentPosts() {
-	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts?page=1`, {
-	  headers: {
-		'count': RECENT_POSTS_COUNT.toString()
-	  },
-	  cache: 'force-cache'
-	});
-  
-	if (!response.ok) {
-	  throw new Error('포스트를 가져오는데 실패했습니다');
+	try {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts?page=1`, {
+		  headers: {
+			'count': RECENT_POSTS_COUNT.toString()
+		  },
+		  cache: 'force-cache'
+		});
+	  
+		const data = await response.json();
+		return data.posts;
+	} catch (error) {
+		throw new Error('포스트를 가져오는데 실패했습니다', { cause: error });
 	}
-  
-	const data = await response.json();
-	return data.posts;
-  }
+}
 
 const RecentPosts = async () => {
 	const posts = await getRecentPosts();

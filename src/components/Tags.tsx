@@ -2,15 +2,15 @@ import React from 'react';
 import Tag from './Tag';
 
 async function getTags() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tags`, {
-    cache: 'force-cache' 
-  });
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tags`, {
+      cache: 'force-cache' 
+    });
 
-  if (!response.ok) {
-    throw new Error('태그를 가져오는데 실패했습니다');
+    return response.json();
+  } catch (error) {
+    throw new Error('태그를 가져오는데 실패했습니다', { cause: error });
   }
-
-  return response.json();
 }
 
 const Tags = async ({ tags }: { tags?: string[] }) => {

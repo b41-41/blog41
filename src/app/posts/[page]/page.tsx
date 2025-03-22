@@ -10,34 +10,35 @@ interface PostListPageProps {
 }
 
 async function getPosts(page: number) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts?page=${page}`, {
-    headers: {
-      'count': POSTS_PER_PAGE.toString()
-    },
-    cache: 'force-cache'
-  });
-
-  if (!response.ok) {
-    throw new Error('포스트를 가져오는데 실패했습니다');
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts?page=${page}`, {
+      headers: {
+        'count': POSTS_PER_PAGE.toString()
+      },
+      cache: 'force-cache'
+    });
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error('포스트를 가져오는데 실패했습니다', { cause: error });
   }
-
-  return response.json();
 }
 
 async function getTotalPages() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts?page=1`, {
-    headers: {
-      'count': POSTS_PER_PAGE.toString()
-    },
-    cache: 'force-cache'
-  });
-
-  if (!response.ok) {
-    throw new Error('데이터를 가져오는데 실패했습니다');
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts?page=1`, {
+      headers: {
+        'count': POSTS_PER_PAGE.toString()
+      },
+      cache: 'force-cache'
+    });
+    
+    const data = await response.json();
+    return data.totalPages;
+  } catch (error) {
+    throw new Error('데이터를 가져오는데 실패했습니다', { cause: error });
   }
-
-  const data = await response.json();
-  return data.totalPages;
 }
 
 export async function generateStaticParams() {

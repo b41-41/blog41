@@ -4,16 +4,16 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 
 async function getTilPosts() {
-	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/til`, {
-		cache: 'force-cache'
-	});
-	
-	if (!response.ok) {
-		throw new Error('TIL 데이터를 가져오는데 실패했습니다.');
+	try {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/til`, {
+			cache: 'force-cache'
+		});
+		
+		const data = await response.json();
+		return data.posts as PostType[];
+	} catch (error) {
+		throw new Error('TIL 데이터를 가져오는데 실패했습니다.', { cause: error });
 	}
-	
-	const data = await response.json();
-	return data.posts as PostType[];
 }
 
 export default async function TILPage() {
