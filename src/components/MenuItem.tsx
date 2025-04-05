@@ -12,7 +12,7 @@ const MenuItem = ({ title, href, key }: MenuItemProps) => {
           id="color-area"
           className="h-[50px] w-full sm:h-[70px] md:h-[80px] bg-gradient-to-r from-pink-400 via-pink-300 to-blue-400"
         ></div>
-        <p className="text-center text-sm sm:text-base md:text-xl font-bold">{title}</p>
+        <p className="text-center text-sm sm:text-base md:text-xl font-bold text-gray-900">{title}</p>
       </div>
     </Link>
   );

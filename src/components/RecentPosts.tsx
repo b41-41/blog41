@@ -22,7 +22,7 @@ const RecentPosts = async () => {
 	const posts = await getRecentPosts();
   return (
        <div className='flex flex-col items-center justify-center gap-3 sm:gap-4'>
-        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold w-full'>Recent Posts</h1>
+        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold w-full text-gray-800'>Recent Posts</h1>
         <div className='flex flex-col items-center justify-center gap-3 sm:gap-4 w-full'>
           {posts.map((post: any) => (
             <Link 
@@ -31,9 +31,9 @@ const RecentPosts = async () => {
               className='w-full border-normal rounded border-primary-dark bg-white p-3 sm:p-4 hover:bg-gray-50 shadow-sm hover:shadow-md transition-shadow'
             >
               <div className='flex flex-col gap-1 sm:gap-2'>
-                <h2 className='text-xl sm:text-2xl font-bold line-clamp-2'>{post.title}</h2>
-                <p className='text-base sm:text-lg text-gray-600 line-clamp-2'>{post.description}</p>
-                <p className='text-xs sm:text-sm text-gray-400'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+                <h2 className='text-xl sm:text-2xl font-bold line-clamp-2 text-gray-800'>{post.title}</h2>
+                <p className='text-base sm:text-lg text-gray-800 line-clamp-2'>{post.description}</p>
+                <p className='text-xs sm:text-sm text-gray-700'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
               </div>
             </Link>
           ))}

@@ -16,14 +16,14 @@ const CodeBlock = ({ language, value }: CodeBlockProps) => {
   };
 
   return (
-    <pre data-language={language || 'text'} className="relative">
+    <pre data-language={language || 'text'} className="relative bg-gray-100 p-4 rounded-md border border-gray-300 overflow-x-auto">
       <button
         onClick={handleCopy}
-        className="copy-button"
+        className="absolute bottom-2 right-2 text-gray-700 hover:text-gray-900 text-xs bg-white px-2 py-1 rounded"
       >
         {copied ? 'copied!' : 'copy'}
       </button>
-      <code>{value}</code>
+      <code className="text-gray-900 block">{value}</code>
     </pre>
   );
 };
