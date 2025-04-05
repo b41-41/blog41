@@ -16,12 +16,7 @@ export const MENU_ITEMS: MenuItemType[] = [
     title: '포트폴리오',
     href: '/portfolio',
   },
-  {
-    key: 'contact',
-    title: '연락하기',
-    href: '/contact',
-  },
-] as const;
+];
 
 export const POSTS_PER_PAGE = 10;
 export const PAGINATION_DISPLAY_COUNT = 5;

@@ -21,26 +21,26 @@ async function getRecentPosts() {
 const RecentPosts = async () => {
 	const posts = await getRecentPosts();
   return (
-       <div className='flex flex-col items-center justify-center gap-4'>
-        <h1 className='text-4xl font-bold w-full'>Recent Posts</h1>
-        <div className='flex flex-col items-center justify-center gap-4 w-full'>
+       <div className='flex flex-col items-center justify-center gap-3 sm:gap-4'>
+        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold w-full'>Recent Posts</h1>
+        <div className='flex flex-col items-center justify-center gap-3 sm:gap-4 w-full'>
           {posts.map((post: any) => (
             <Link 
               href={`/post/${post.postId}`}
               key={post.postId}
-              className='w-full border-normal rounded border-primary-dark bg-white p-4 hover:bg-gray-50'
+              className='w-full border-normal rounded border-primary-dark bg-white p-3 sm:p-4 hover:bg-gray-50 shadow-sm hover:shadow-md transition-shadow'
             >
-              <div className='flex flex-col gap-2'>
-                <h2 className='text-2xl font-bold'>{post.title}</h2>
-                <p className='text-lg text-gray-600'>{post.description}</p>
-                <p className='text-sm text-gray-400'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+              <div className='flex flex-col gap-1 sm:gap-2'>
+                <h2 className='text-xl sm:text-2xl font-bold line-clamp-2'>{post.title}</h2>
+                <p className='text-base sm:text-lg text-gray-600 line-clamp-2'>{post.description}</p>
+                <p className='text-xs sm:text-sm text-gray-400'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
               </div>
             </Link>
           ))}
         </div>
         <Link 
           href="/posts/1" 
-          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="mt-3 sm:mt-4 px-4 sm:px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm sm:text-base"
         >
           모든 포스트 보기
         </Link>
