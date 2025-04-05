@@ -36,10 +36,10 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className="flex flex-col items-center bg-yellow-100">
-        <div id="container" className="w-full max-w-[1000px] px-3 sm:px-4 md:px-6">
+      <body className="flex flex-col items-center bg-yellow-100 overflow-x-hidden">
+        <div id="container" className="w-full max-w-[1000px] px-3 sm:px-4 md:px-6 overflow-hidden">
           <Header />
-          <main className="flex w-full flex-col items-center gap-3 sm:gap-4">
+          <main className="flex w-full flex-col items-center gap-3 sm:gap-4 overflow-hidden">
             <Suspense fallback={<Loading />}>
               {children}
             </Suspense>
