@@ -14,14 +14,19 @@ const MenuItem = ({ title, href, itemKey, currentPath = '' }: MenuItemProps) => 
   
   return (
     <Link href={href}>
-      <div className={`flex h-[100px] w-[120px] flex-col items-center justify-center overflow-hidden rounded border-normal border-primary-dark bg-white transition-all ${isActive ? 'shadow-[0_4px_20px_rgba(0,0,0,0.15)] scale-[1.03]' : 'shadow-sm hover:shadow-md'}`}>
+      <div className={`flex flex-col items-center justify-center overflow-hidden rounded border-normal border-primary-dark bg-white transition-all 
+          h-[80px] w-[96px] sm:h-[90px] sm:w-[108px] md:h-[100px] md:w-[120px] 
+          ${isActive ? 'shadow-[0_4px_20px_rgba(0,0,0,0.15)] scale-[1.03]' : 'shadow-sm hover:shadow-md'}`}>
         <div 
           id="color-area" 
-          className={`h-[70px] w-full bg-gradient-to-r from-pink-400 via-pink-300 to-blue-400 ${isActive ? 'animate-gradient-slow' : ''}`}
+          className={`w-full bg-gradient-to-r from-pink-400 via-pink-300 to-blue-400 ${isActive ? 'animate-gradient-slow' : ''}
+            h-[56px] sm:h-[63px] md:h-[70px]`}
           style={{ backgroundSize: isActive ? '200% 100%' : '100% 100%' }}
         >
         </div>
-        <p className="text-center text-base font-bold pt-1 text-gray-900">{title}</p>
+        <div className="h-[24px] sm:h-[27px] md:h-[30px] flex items-center justify-center">
+          <p className="text-center font-bold text-gray-900 text-sm sm:text-base md:text-xl">{title}</p>
+        </div>
       </div>
     </Link>
   );
