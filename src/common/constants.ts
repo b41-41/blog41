@@ -2,9 +2,9 @@ import { MenuItemType } from './type';
 
 export const MENU_ITEMS: MenuItemType[] = [
   {
-    key: 'home',
-    title: '홈',
-    href: '/',
+    key: 'posts',
+    title: 'Posts',
+    href: '/posts/1',
   },
   {
     key: 'til',
@@ -13,7 +13,7 @@ export const MENU_ITEMS: MenuItemType[] = [
   },
   {
     key: 'portfolio',
-    title: '포트폴리오',
+    title: 'Portfolio',
     href: '/portfolio',
   },
 ];
