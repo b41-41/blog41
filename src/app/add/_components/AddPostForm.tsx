@@ -289,7 +289,11 @@ export default function AddPostForm() {
           <DatePicker
             selected={selectedDate}
             onChange={(date: Date | null) => date && setSelectedDate(date)}
-            dateFormat="yyyy-MM-dd"
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            timeCaption="시간"
+            dateFormat="yyyy-MM-dd HH:mm"
             className="w-full p-2 border border-gray-300 rounded-md"
           />
         </div>
