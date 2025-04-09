@@ -3,6 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 import Header from '@/common/Header';
 import Footer from '@/common/Footer';
+import WriteButton from '@/common/WriteButton';
 import { Suspense } from 'react';
 import Loading from './loading';
 
@@ -45,6 +46,7 @@ export default function RootLayout({
             </Suspense>
           </main>
           <Footer />
+          <WriteButton />
         </div>
       </body>
     </html>
