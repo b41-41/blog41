@@ -1,6 +1,7 @@
 import {  DEFAULT_DATE_FORMAT, RECENT_POSTS_COUNT } from '@/common/constants';
 import dayjs from 'dayjs';
 import Link from 'next/link';
+import { PostType } from '@/app/post/post.type';
 
 async function getRecentPosts() {
 	try {
@@ -21,30 +22,29 @@ async function getRecentPosts() {
 const RecentPosts = async () => {
 	const posts = await getRecentPosts();
   return (
-       <div className='flex flex-col items-center justify-center gap-3 sm:gap-4'>
-        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold w-full text-gray-800'>Recent Posts</h1>
-        <div className='flex flex-col items-center justify-center gap-3 sm:gap-4 w-full'>
-          {posts.map((post: any) => (
+      <div className='flex flex-col gap-3 sm:gap-4 w-full'>
+        <div className='flex flex-col gap-3 sm:gap-4 w-full'>
+          {posts.map((post: PostType) => (
             <Link 
               href={`/post/${post.postId}`}
               key={post.postId}
               className='w-full border-normal rounded border-primary-dark bg-white p-3 sm:p-4 hover:bg-gray-50 shadow-sm hover:shadow-md transition-shadow'
             >
               <div className='flex flex-col gap-1 sm:gap-2'>
-                <h2 className='text-xl sm:text-2xl font-bold line-clamp-2 text-gray-800'>{post.title}</h2>
-                <p className='text-base sm:text-lg text-gray-800 line-clamp-2'>{post.description}</p>
-                <p className='text-xs sm:text-sm text-gray-700'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+                <h2 className='text-xl font-bold line-clamp-2 text-gray-900'>{post.title}</h2>
+                <p className='text-base text-gray-800 line-clamp-2'>{post.description}</p>
+                <p className='text-xs text-gray-700'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
               </div>
             </Link>
           ))}
         </div>
         <Link 
           href="/posts/1" 
-          className="mt-3 sm:mt-4 px-4 sm:px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm sm:text-base"
+          className="self-start px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm"
         >
           모든 포스트 보기
         </Link>
-      </div> 
+      </div>
   )
 }
 
