@@ -13,16 +13,21 @@ async function getTags() {
   }
 }
 
-const Tags = async ({ tags }: { tags?: string[] }) => {
+interface TagsProps {
+  tags?: string[];
+  showAll?: boolean; 
+}
+
+const Tags = async ({ tags, showAll = false }: TagsProps) => {
   const allTags = await getTags();
   const tagsMap = tags || allTags || [];
 
   return (
     <div className="border-normal rounded-middle flex w-full flex-wrap gap-2 border-primary-dark bg-white p-2">
-      {tagsMap.slice(0, 20).map((tag: string) => (
+      {(showAll ? tagsMap : tagsMap.slice(0, 20)).map((tag: string) => (
         <Tag key={tag} text={tag} />
       ))}
-        <Tag key="etc." text="..." />
+      {!showAll && tagsMap.length > 20 && <Tag key="etc." text="..." />}
     </div>
   );
 };

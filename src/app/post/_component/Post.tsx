@@ -25,7 +25,7 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
         <p className="text-2xl text-gray-800 break-words w-full text-center">{description}</p>
         <p className="text-xl text-gray-700 break-words w-full text-center">작성일 : {dayjs(createdAt).format(DEFAULT_DATE_FORMAT)}</p>
       </div>
-      <Tags tags={tags} />
+      <Tags tags={tags} showAll />
       <section className="w-full border-normal rounded border-primary-dark bg-white p-4 overflow-hidden">
         <Markdown 
           className='prose w-full max-w-none p-4 overflow-hidden'
