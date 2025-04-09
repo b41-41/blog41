@@ -89,11 +89,17 @@ export default {
           '50%': { transform: 'translateX(50%) rotate(-1deg)' },
           '75%': { transform: 'translateX(25%) rotate(0.5deg)' },
         },
+        gradient: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
       },
       animation: {
         carMove: 'carMove 3s ease-in-out forwards',
         scaleMove: 'scaleMove 3s ease-in-out forwards',
         shakeMove: 'shakeMove 3s ease-in-out forwards',
+        'gradient-slow': 'gradient 3s ease-in-out infinite',
       },
       typography: {
         DEFAULT: {
