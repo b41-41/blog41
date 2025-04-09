@@ -68,7 +68,7 @@ export default async function PostListPage({
   return (
     <div className="border-normal rounded-middle flex w-full flex-col gap-2 border-primary-dark bg-white p-4">
     <div className='flex flex-col items-center justify-center gap-4'>
-      <h1 className='text-4xl font-bold w-full'>Posts</h1>
+      <h1 className='text-4xl font-bold w-full text-gray-900'>Posts</h1>
       <div className='flex flex-col items-center justify-center gap-4 w-full'>
         {posts.map((post: any) => (
           <Link 
@@ -77,9 +77,9 @@ export default async function PostListPage({
             className='w-full border-normal rounded border-primary-dark bg-white p-4 hover:bg-gray-50'
           >
             <div className='flex flex-col gap-2'>
-              <h2 className='text-2xl font-bold'>{post.title}</h2>
-              <p className='text-lg text-gray-600'>{post.description}</p>
-              <p className='text-sm text-gray-400'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+              <h2 className='text-2xl font-bold text-gray-900'>{post.title}</h2>
+              <p className='text-lg text-gray-800'>{post.description}</p>
+              <p className='text-sm text-gray-600'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
             </div>
           </Link>
         ))}

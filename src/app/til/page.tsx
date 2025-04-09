@@ -21,8 +21,7 @@ export default async function TILPage() {
 
 	return (
 		<div className="border-normal rounded-middle flex w-full flex-col gap-2 border-primary-dark bg-white p-4">
-			<div className="container mx-auto px-4 py-8">
-				<h1 className="text-3xl font-bold mb-6 text-gray-800">Today I Learned</h1>
+				<h1 className='text-4xl font-bold w-full text-gray-800'>Today I Learned</h1>
 				
 				{tilPosts.length === 0 ? (
 					<p className="text-gray-700">아직 TIL 게시물이 없습니다.</p>
@@ -48,7 +47,6 @@ export default async function TILPage() {
 					</div>
 				)}
 			</div>
-		</div>
 	);
 }
   
