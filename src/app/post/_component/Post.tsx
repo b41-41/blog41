@@ -32,10 +32,15 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
           components={{
             code(props) {
               const {children, className, node} = props;
-              if (!node.properties.className) {
-                return <code>{children}</code>
+              
+              const isCodeBlock = node?.tagName === 'code' && 
+                                  node?.position?.start?.line !== node?.position?.end?.line;
+              
+              if (!isCodeBlock) {
+                return <code className="bg-gray-100 px-1 py-0.5 rounded text-gray-900">{children}</code>;
               }
-              const language = className ? className.replace('language-', '') : '';
+              
+              const language = className ? className.replace('language-', '') : 'text';
               return <CodeBlock language={language} value={String(children)} />;
             }
           }}
