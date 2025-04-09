@@ -3,6 +3,7 @@ import Post from '../_component/Post';
 import FullscreenOverlay from '@/common/FullscreenOverlay';
 import PostOverlay from '../_component/PostOverlay';
 import TableOfContents from '@/components/TableOfContents';
+import ScrollProgressBar from '@/components/ScrollProgressBar';
 
 interface PostPageProps {
   params: Promise<{ id: string }>
@@ -20,6 +21,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
     return (
       <>
+        <ScrollProgressBar />
         <FullscreenOverlay>
           <PostOverlay
             postId={post.postId}
