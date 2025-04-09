@@ -34,13 +34,13 @@ export default async function TILPage() {
 								className="w-full border-normal rounded border-primary-dark bg-white p-4 hover:bg-gray-50"
 							>
 								<div className="flex flex-col gap-2">
-									<div className="flex justify-between items-center">
-										<h2 className="text-xl font-semibold text-gray-800">{post.title}</h2>
-										<span className="text-sm text-gray-700">
+									<div className="flex items-center">
+										<h2 className="text-xl font-semibold text-gray-900 truncate mr-3">{post.title}</h2>
+										<span className="text-sm text-gray-700 whitespace-nowrap flex-shrink-0 ml-auto">
 											{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}
 										</span>
 									</div>
-									<p className="text-gray-800">{post.description || post.content.substring(0, 150)}</p>
+									<p className="text-gray-800 line-clamp-2">{post.description || post.content.substring(0, 150)}</p>
 								</div>
 							</Link>
 						))}
