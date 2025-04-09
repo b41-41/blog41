@@ -2,6 +2,7 @@ import React from 'react';
 import Post from '../_component/Post';
 import FullscreenOverlay from '@/common/FullscreenOverlay';
 import PostOverlay from '../_component/PostOverlay';
+import TableOfContents from '@/components/TableOfContents';
 
 interface PostPageProps {
   params: Promise<{ id: string }>
@@ -30,6 +31,7 @@ export default async function PostPage({ params }: PostPageProps) {
             createdAt={post.createdAt}
           />
         </FullscreenOverlay>
+        <TableOfContents content={post.content} />
         <Post
           postId={post.postId}
           order={post.order}
