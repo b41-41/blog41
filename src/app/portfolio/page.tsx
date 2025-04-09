@@ -6,9 +6,9 @@ import Portfolio from './_component/Portfolio';
 const PortfolioPage = () => {
   return (
     <>
-      <FullscreenOverlay>
-        <PortfolioOverlay />
-      </FullscreenOverlay>
+      {/* <FullscreenOverlay> */}
+        {/* <PortfolioOverlay /> */}
+      {/* </FullscreenOverlay> */}
       <Portfolio />
     </>
   );
