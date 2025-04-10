@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import dayjs from 'dayjs';
 import Pagination from '@/components/Pagination';
 import { DEFAULT_DATE_FORMAT, POSTS_PER_PAGE } from '@/common/constants';
 import { notFound } from 'next/navigation';
+import { formatToLocalTime } from '@/utils/dayjs';
 
 interface PostListPageProps {
   params: Promise<{ page: string }>;
@@ -79,7 +79,7 @@ export default async function PostListPage({
             <div className='flex flex-col gap-2'>
               <h2 className='text-2xl font-bold text-gray-900'>{post.title}</h2>
               <p className='text-lg text-gray-800'>{post.description}</p>
-              <p className='text-sm text-gray-600'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+              <p className='text-sm text-gray-600'>{formatToLocalTime(post.createdAt, DEFAULT_DATE_FORMAT)}</p>
             </div>
           </Link>
         ))}

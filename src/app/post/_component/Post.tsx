@@ -2,9 +2,9 @@ import React from 'react';
 import { PostType } from '../post.type';
 import Tags from '@/components/Tags';
 import Markdown from 'react-markdown'
-import dayjs from 'dayjs';
 import { DEFAULT_DATE_FORMAT } from '@/common/constants';
 import CodeBlock from '@/components/CodeBlock';
+import { formatToLocalTime } from '@/utils/dayjs';
 
 interface PostProps extends PostType {
   //   updatedAt: string;
@@ -23,7 +23,7 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
       <div className="border-normal flex w-full flex-col items-center justify-center gap-4 rounded border-primary-dark bg-white p-4 overflow-hidden">
         <h1 className="text-4xl font-bold text-gray-900 break-words w-full text-center">{title}</h1>
         <p className="text-2xl text-gray-800 break-words w-full text-center">{description}</p>
-        <p className="text-xl text-gray-700 break-words w-full text-center">작성일 : {dayjs(createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+        <p className="text-xl text-gray-700 break-words w-full text-center">작성일 : {formatToLocalTime(createdAt, DEFAULT_DATE_FORMAT)}</p>
       </div>
       <Tags tags={tags} showAll />
       <section className="w-full border-normal rounded border-primary-dark bg-white p-4 overflow-hidden">

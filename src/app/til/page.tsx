@@ -1,7 +1,7 @@
 import { PostType } from '../post/post.type';
 import { DEFAULT_DATE_FORMAT } from '@/common/constants';
-import dayjs from 'dayjs';
 import Link from 'next/link';
+import { formatToLocalTime } from '@/utils/dayjs';
 
 async function getTilPosts() {
 	try {
@@ -37,7 +37,7 @@ export default async function TILPage() {
 									<div className="flex items-center">
 										<h2 className="text-xl font-semibold text-gray-900 truncate mr-3">{post.title}</h2>
 										<span className="text-sm text-gray-700 whitespace-nowrap flex-shrink-0 ml-auto">
-											{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}
+											{formatToLocalTime(post.createdAt, DEFAULT_DATE_FORMAT)}
 										</span>
 									</div>
 									<p className="text-gray-800 line-clamp-2">{post.description || post.content.substring(0, 150)}</p>
