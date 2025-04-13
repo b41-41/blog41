@@ -39,7 +39,7 @@ export default function LngLayout({
           {children}
         </Suspense>
       </main>
-      <Footer lng={lng} />
+      <Footer />
       <WriteButton lng={lng} />
     </>
   );

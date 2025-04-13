@@ -6,11 +6,14 @@ import TableOfContents from '@/components/TableOfContents';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 
 interface PostPageProps {
-  params: Promise<{ id: string }>
+  params: {
+    id: string;
+    lng: string;
+  }
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const { id } = await params;  
+  const { id, lng } = params;
 
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/${id}`, {
@@ -42,6 +45,7 @@ export default async function PostPage({ params }: PostPageProps) {
           tags={post.tags}
           content={post.content}
           createdAt={post.createdAt}
+          lng={lng}
         />
       </>
     );
@@ -52,7 +56,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <h2 className="text-2xl font-bold mb-4">포스트를 찾을 수 없습니다</h2>
           <p className="mb-6 text-gray-600">요청하신 포스트가 존재하지 않거나 삭제되었습니다.</p>
           <a 
-            href="/"
+            href={`/${lng}`}
             className="px-4 py-2 bg-primary-dark text-white rounded hover:bg-opacity-90 transition-all inline-block"
           >
             홈으로 돌아가기
