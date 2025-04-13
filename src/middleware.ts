@@ -6,8 +6,18 @@ export function middleware(request: NextRequest) {
   const isProduction = process.env.NODE_ENV === 'production';
   const { pathname } = request.nextUrl;
   
-  if (isProduction && pathname.startsWith('/add')) {
+  if (isProduction && (pathname.startsWith('/add') || pathname.includes('/edit/'))) {
     return NextResponse.redirect(new URL('/', request.url));
+  }
+  
+  const isLocalhost = request.headers.get('host')?.includes('localhost') || 
+                     request.headers.get('host')?.includes('127.0.0.1');
+                     
+  if (!isLocalhost && pathname.includes('/edit/')) {
+    const langMatch = pathname.match(/^\/([^/]+)\//);
+    const lang = langMatch ? langMatch[1] : fallbackLng;
+    
+    return NextResponse.redirect(new URL(`/${lang}`, request.url));
   }
   
   const pathnameHasLng = languages.some(

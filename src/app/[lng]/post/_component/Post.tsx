@@ -5,6 +5,7 @@ import { DEFAULT_DATE_FORMAT } from '@/common/constants';
 import { formatToLocalTime } from '@/utils/dayjs';
 import PostContent from './PostContent';
 import { getTranslation } from '@/i18n';
+import EditButton from './EditButton';
 
 interface PostProps extends PostType {
   //   updatedAt: string;
@@ -33,6 +34,7 @@ const Post = async ({
         <h1 className="text-4xl font-bold text-gray-900 break-words w-full text-center">{title}</h1>
         <p className="text-2xl text-gray-800 break-words w-full text-center">{description}</p>
         <p className="text-xl text-gray-700 break-words w-full text-center">{t('post.publishedOn')}: {formatToLocalTime(createdAt, DEFAULT_DATE_FORMAT)}</p>
+          <EditButton lng={lng} postId={postId} />
       </div>
       <Tags lng={lng} tags={tags} showAll />
       <div className="w-full relative">
