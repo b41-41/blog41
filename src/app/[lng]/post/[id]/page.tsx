@@ -4,6 +4,7 @@ import FullscreenOverlay from '@/common/FullscreenOverlay';
 import PostOverlay from '../_component/PostOverlay';
 import TableOfContents from '@/components/TableOfContents';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
+import { LANGUAGE_PRIORITY } from '@/common/constants';
 
 interface PostPageProps {
   params: Promise<{
@@ -21,6 +22,36 @@ export default async function PostPage({ params }: PostPageProps) {
     });
     
     const post = await response.json();
+    
+    const availableLanguages = post.availableLanguages || ['ko'];
+    const originalLanguage = post.originalLanguage || 'ko';
+    
+    let displayLanguage = lng;
+    
+    if (!availableLanguages.includes(lng)) {
+      for (const priorityLang of LANGUAGE_PRIORITY) {
+        if (availableLanguages.includes(priorityLang)) {
+          displayLanguage = priorityLang;
+          break;
+        }
+      }
+      
+      if (!availableLanguages.includes(displayLanguage)) {
+        displayLanguage = originalLanguage;
+      }
+    }
+    
+    const postData = displayLanguage !== originalLanguage && post.translations && post.translations[displayLanguage] ? {
+      title: post.translations[displayLanguage].title,
+      description: post.translations[displayLanguage].description,
+      content: post.translations[displayLanguage].content,
+      tags: post.translations[displayLanguage].tags || post.tags
+    } : {
+      title: post.title,
+      description: post.description,
+      content: post.content,
+      tags: post.tags
+    };
 
     return (
       <>
@@ -29,23 +60,25 @@ export default async function PostPage({ params }: PostPageProps) {
           <PostOverlay
             postId={post.postId}
             order={post.order}
-            title={post.title}
-            description={post.description}
-            tags={post.tags}
-            content={post.content}
+            title={postData.title}
+            description={postData.description}
+            tags={postData.tags}
+            content={postData.content}
             createdAt={post.createdAt}
           />
         </FullscreenOverlay>
-        <TableOfContents content={post.content} />
+        <TableOfContents content={postData.content} />
         <Post
           postId={post.postId}
           order={post.order}
-          title={post.title}
-          description={post.description}
-          tags={post.tags}
-          content={post.content}
+          title={postData.title}
+          description={postData.description}
+          tags={postData.tags}
+          content={postData.content}
           createdAt={post.createdAt}
           lng={lng}
+          originalLanguage={originalLanguage}
+          availableLanguages={availableLanguages}
         />
       </>
     );

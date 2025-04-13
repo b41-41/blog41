@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { PostType } from '@/app/[lng]/post/post.type';
 import { getTranslation } from '@/i18n';
+import PostLanguageOverlay from './PostLanguageOverlay';
 
 async function getRecentTIL() {
   try {
@@ -32,21 +33,46 @@ const RecentTIL = async ({ lng }: RecentTILProps) => {
     <div className='flex flex-col gap-3 sm:gap-4 w-full'>
       <div className='flex flex-col gap-3 sm:gap-4 w-full'>
         {tilPosts && tilPosts.length > 0 ? (
-          tilPosts.map((post: PostType) => (
-            <Link 
-              href={`/${lng}/post/${post.postId}`}
-              key={post.postId}
-              className='w-full border-normal rounded border-primary-dark bg-white p-3 sm:p-4 hover:bg-gray-50 shadow-sm hover:shadow-md transition-shadow'
-            >
-              <div className='flex flex-col gap-1 sm:gap-2'>
-                <h2 className='text-xl font-bold line-clamp-2 text-gray-900'>{post.title}</h2>
-                <p className='text-base text-gray-800 line-clamp-2'>{post.description || post.content.substring(0, 150)}</p>
-                <p className='text-xs text-gray-700'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+          tilPosts.map((post: PostType) => {
+            const availableLanguages = post.availableLanguages || ['ko'];
+            const originalLanguage = post.originalLanguage || 'ko';
+            const hasTranslation = availableLanguages.includes(lng);
+            
+            const postData = hasTranslation && post.translations && post.translations[lng] ? {
+              title: post.translations[lng].title,
+              description: post.translations[lng].description,
+              content: post.translations[lng].content
+            } : {
+              title: post.title,
+              description: post.description,
+              content: post.content
+            };
+            
+            return (
+              <div key={post.postId} className="relative">
+                <Link 
+                  href={`/${lng}/post/${post.postId}`}
+                  className='block w-full border-normal rounded border-primary-dark bg-white p-3 sm:p-4 hover:bg-gray-50 shadow-sm hover:shadow-md transition-shadow relative'
+                >
+                  <div className='flex flex-col gap-1 sm:gap-2'>
+                    <h2 className='text-xl font-bold line-clamp-2 text-gray-900'>{postData.title}</h2>
+                    <p className='text-base text-gray-800 line-clamp-2'>{postData.description || postData.content.substring(0, 150)}</p>
+                    <p className='text-xs text-gray-700'>{dayjs(post.createdAt).format(DEFAULT_DATE_FORMAT)}</p>
+                  </div>
+                </Link>
+                
+                <PostLanguageOverlay 
+                  lng={lng} 
+                  availableLanguages={availableLanguages} 
+                  originalLanguage={originalLanguage}
+                  postId={post.postId}
+                  isList={true}
+                />
               </div>
-            </Link>
-          ))
+            );
+          })
         ) : (
-          <p className="text-gray-900">아직 TIL 게시물이 없습니다.</p>
+          <p className="text-gray-900">{t('post.noTilPosts') || '아직 TIL 게시물이 없습니다.'}</p>
         )}
       </div>
       <Link 

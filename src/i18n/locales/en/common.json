@@ -2,7 +2,8 @@
   "menu": {
     "posts": "Posts",
     "til": "TIL",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "translations": "Translations"
   },
   "post": {
     "readMore": "Read More",
@@ -11,7 +12,21 @@
     "relatedPosts": "Related Posts",
     "comments": "Comments",
     "notAvailableInLanguage": "This post is not available in English.",
-    "viewInOtherLanguage": "Click the button below to view it in another language."
+    "viewInOtherLanguage": "Click the button below to view it in another language.",
+    "edit": "Edit",
+    "noTilPosts": "No TIL posts yet.",
+    "title": "Title",
+    "description": "Description",
+    "content": "Content",
+    "save": "Save",
+    "saving": "Saving...",
+    "saveSuccess": "Post saved successfully.",
+    "saveError": "Failed to save post.",
+    "titleAndContentRequired": "Title and content are required.",
+    "selectLanguage": "Select Language",
+    "originalLanguage": "Original Language",
+    "currentLanguage": "Current Editing Language",
+    "translating": "Translating"
   },
   "language": {
     "ko": "한국어",
@@ -22,6 +37,22 @@
     "loading": "Loading...",
     "error": "An error occurred",
     "notFound": "Page not found",
-    "backToHome": "Back to Home"
+    "backToHome": "Back to Home",
+    "add": "Add",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "showMore": "Show More",
+    "retry": "Retry",
+    "close": "Close"
+  },
+  "translations": {
+    "complete": "Complete",
+    "partial": "Partial",
+    "missing": "Missing",
+    "partialTranslations": "Partially Translated Posts",
+    "missingTranslations": "Posts Needing Translation",
+    "noPartialTranslations": "No partially translated posts.",
+    "noMissingTranslations": "No posts needing translation.",
+    "original": "Original"
   }
 }

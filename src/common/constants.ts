@@ -23,3 +23,4 @@ export const PAGINATION_DISPLAY_COUNT = 5;
 export const RECENT_POSTS_COUNT = 5;
 export const DEFAULT_DATE_FORMAT = 'YYYY.MM.DD';
 export const TIL_TAG = 'TIL';
+export const LANGUAGE_PRIORITY = ['en', 'ko', 'ja'] as const;

@@ -4,9 +4,12 @@ import Pagination from '@/components/Pagination';
 import { DEFAULT_DATE_FORMAT, POSTS_PER_PAGE } from '@/common/constants';
 import { notFound } from 'next/navigation';
 import { formatToLocalTime } from '@/utils/dayjs';
+import { PostType } from '@/app/[lng]/post/post.type';
+import { getTranslation } from '@/i18n';
+import PostLanguageOverlay from '@/components/PostLanguageOverlay';
 
 interface PostListPageProps {
-  params: Promise<{ page: string }>;
+  params: Promise<{ page: string; lng: string }>;
 }
 
 async function getPosts(page: number) {
@@ -52,8 +55,9 @@ export async function generateStaticParams() {
 export default async function PostListPage({
   params,
 }: PostListPageProps) {
-  const { page } = await params;
+  const { page, lng } = await params;
   const pageNumber = Number(page);
+  const { t } = await getTranslation(lng, 'common');
 
   if (isNaN(pageNumber) || pageNumber < 1) {
     notFound();
@@ -68,23 +72,46 @@ export default async function PostListPage({
   return (
     <div className="border-normal rounded-middle flex w-full flex-col gap-2 border-primary-dark bg-white p-4">
     <div className='flex flex-col items-center justify-center gap-4'>
-      <h1 className='text-4xl font-bold w-full text-gray-900'>Posts</h1>
+      <h1 className='text-4xl font-bold w-full text-gray-900'>{t('menu.posts')}</h1>
       <div className='flex flex-col items-center justify-center gap-4 w-full'>
-        {posts.map((post: any) => (
-          <Link 
-            href={`/post/${post.postId}`}
-            key={post.postId}
-            className='w-full border-normal rounded border-primary-dark bg-white p-4 hover:bg-gray-50'
-          >
-            <div className='flex flex-col gap-2'>
-              <h2 className='text-2xl font-bold text-gray-900'>{post.title}</h2>
-              <p className='text-lg text-gray-800'>{post.description}</p>
-              <p className='text-sm text-gray-600'>{formatToLocalTime(post.createdAt, DEFAULT_DATE_FORMAT)}</p>
+        {posts.map((post: PostType) => {
+          const availableLanguages = post.availableLanguages || ['ko'];
+          const originalLanguage = post.originalLanguage || 'ko';
+          const hasTranslation = availableLanguages.includes(lng);
+          
+          const postData = hasTranslation && post.translations && post.translations[lng] ? {
+            title: post.translations[lng].title,
+            description: post.translations[lng].description
+          } : {
+            title: post.title,
+            description: post.description
+          };
+          
+          return (
+            <div key={post.postId} className="relative w-full">
+              <Link 
+                href={`/${lng}/post/${post.postId}`}
+                className='block w-full border-normal rounded border-primary-dark bg-white p-4 hover:bg-gray-50 relative'
+              >
+                <div className='flex flex-col gap-2'>
+                  <h2 className='text-2xl font-bold text-gray-900'>{postData.title}</h2>
+                  <p className='text-lg text-gray-800'>{postData.description}</p>
+                  <p className='text-sm text-gray-600'>{formatToLocalTime(post.createdAt, DEFAULT_DATE_FORMAT)}</p>
+                </div>
+              </Link>
+              
+              <PostLanguageOverlay 
+                lng={lng} 
+                availableLanguages={availableLanguages} 
+                originalLanguage={originalLanguage}
+                postId={post.postId}
+                isList={true}
+              />
             </div>
-          </Link>
-        ))}
+          );
+        })}
       </div>
-      <Pagination currentPage={pageNumber} totalPages={totalPages} basePath="/posts" />
+      <Pagination currentPage={pageNumber} totalPages={totalPages} basePath={`/${lng}/posts`} />
     </div>
     </div>
   );

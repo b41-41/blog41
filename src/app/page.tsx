@@ -5,8 +5,8 @@ export default async function HomePage() {
 
   return (
     <>
-      <Tags />
-      <Home />
+      <Tags lng='ko' />
+      <Home lng='ko' />
     </>
   );
 }

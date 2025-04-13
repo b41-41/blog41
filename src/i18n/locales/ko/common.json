@@ -2,7 +2,8 @@
   "menu": {
     "posts": "포스트",
     "til": "TIL",
-    "portfolio": "포트폴리오"
+    "portfolio": "포트폴리오",
+    "translations": "번역 관리"
   },
   "post": {
     "readMore": "더 읽기",
@@ -29,7 +30,9 @@
     "searchTags": "태그 검색...",
     "newTag": "새 태그 입력...",
     "selectedTags": "선택된 태그",
-    "hideTags": "태그 숨기기"
+    "hideTags": "태그 숨기기",
+    "edit": "편집",
+    "noTilPosts": "아직 TIL 게시물이 없습니다."
   },
   "language": {
     "ko": "한국어",
@@ -47,5 +50,15 @@
     "confirm": "확인",
     "cancel": "취소",
     "showMore": "더 보기"
+  },
+  "translations": {
+    "complete": "번역 완료",
+    "partial": "부분 번역",
+    "missing": "번역 없음",
+    "partialTranslations": "부분 번역된 포스트",
+    "missingTranslations": "번역이 필요한 포스트",
+    "noPartialTranslations": "부분 번역된 포스트가 없습니다.",
+    "noMissingTranslations": "번역이 필요한 포스트가 없습니다.",
+    "original": "원본"
   }
 }
