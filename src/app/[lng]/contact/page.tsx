@@ -1,7 +1,7 @@
 import FullscreenOverlay from '@/common/FullscreenOverlay';
-import ContactOverlay from '@/app/contact/_component/ContactOverlay';
 import React from 'react';
 import Contact from './_component/Contact';
+import ContactOverlay from './_component/ContactOverlay';
 
 const ContactPage = () => {
   return (

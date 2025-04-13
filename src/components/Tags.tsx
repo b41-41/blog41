@@ -1,5 +1,6 @@
 import React from 'react';
 import Tag from './Tag';
+import { getTranslation } from '@/i18n';
 
 async function getTags() {
   try {
@@ -15,19 +16,21 @@ async function getTags() {
 
 interface TagsProps {
   tags?: string[];
-  showAll?: boolean; 
+  showAll?: boolean;
+  lng: string;
 }
 
-const Tags = async ({ tags, showAll = false }: TagsProps) => {
+const Tags = async ({ tags, showAll = false, lng }: TagsProps) => {
+  const { t } = await getTranslation(lng, 'common');
   const allTags = await getTags();
   const tagsMap = tags || allTags || [];
 
   return (
     <div className="border-normal rounded-middle flex w-full flex-wrap gap-2 border-primary-dark bg-white p-2">
       {(showAll ? tagsMap : tagsMap.slice(0, 20)).map((tag: string) => (
-        <Tag key={tag} text={tag} />
+        <Tag key={tag} text={tag} lng={lng} />
       ))}
-      {!showAll && tagsMap.length > 20 && <Tag key="etc." text="..." />}
+      {!showAll && tagsMap.length > 20 && <Tag key="etc." text="..." lng={lng} />}
     </div>
   );
 };

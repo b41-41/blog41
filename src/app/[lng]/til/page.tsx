@@ -1,7 +1,7 @@
-import { PostType } from '../post/post.type';
 import { DEFAULT_DATE_FORMAT } from '@/common/constants';
 import Link from 'next/link';
 import { formatToLocalTime } from '@/utils/dayjs';
+import type { PostType } from '../post/post.type';
 
 async function getTilPosts() {
 	try {

@@ -1,0 +1,26 @@
+{
+  "menu": {
+    "posts": "Posts",
+    "til": "TIL",
+    "portfolio": "Portfolio"
+  },
+  "post": {
+    "readMore": "Read More",
+    "publishedOn": "Published on",
+    "tags": "Tags",
+    "relatedPosts": "Related Posts",
+    "comments": "Comments"
+  },
+  "language": {
+    "ko": "한국어",
+    "en": "English",
+    "ja": "日本語",
+    "select": "Select Language"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found",
+    "backToHome": "Back to Home"
+  }
+}

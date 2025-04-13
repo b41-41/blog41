@@ -4,7 +4,11 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const WriteButton = () => {
+interface WriteButtonProps {
+  lng: string;
+}
+
+const WriteButton = ({ lng }: WriteButtonProps) => {
   const pathname = usePathname();
   const [isLocal, setIsLocal] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -21,10 +25,10 @@ const WriteButton = () => {
   if (!mounted) return null;
   
   // add 페이지이거나 로컬 환경이 아닌 경우 표시하지 않음
-  if (pathname === '/add' || !isLocal) return null;
+  if (pathname === `/${lng}/add` || pathname === '/add' || !isLocal) return null;
 
   return (
-    <Link href="/add">
+    <Link href={`/${lng}/add`}>
       <div className="fixed top-4 right-4 z-50 rounded-full bg-primary-dark p-3 shadow-lg transition-transform hover:scale-105">
         <svg 
           xmlns="http://www.w3.org/2000/svg" 

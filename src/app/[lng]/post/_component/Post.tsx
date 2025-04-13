@@ -1,10 +1,11 @@
 import React from 'react';
-import { PostType } from '../post.type';
+import type { PostType } from '../post.type';
 import Tags from '@/components/Tags';
 import Markdown from 'react-markdown'
 import { DEFAULT_DATE_FORMAT } from '@/common/constants';
 import CodeBlock from '@/components/CodeBlock';
 import { formatToLocalTime } from '@/utils/dayjs';
+import { useRouter } from 'next/router';
 
 interface PostProps extends PostType {
   //   updatedAt: string;
@@ -17,6 +18,9 @@ interface PostProps extends PostType {
 }
 
 const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
+  const router = useRouter();
+  const lng = router.locale || 'ko';
+
 
   return (
     <article className="flex w-full flex-col items-center justify-center gap-4 py-4">
@@ -25,7 +29,7 @@ const Post = ({ title, description, tags, content, createdAt }: PostProps) => {
         <p className="text-2xl text-gray-800 break-words w-full text-center">{description}</p>
         <p className="text-xl text-gray-700 break-words w-full text-center">작성일 : {formatToLocalTime(createdAt, DEFAULT_DATE_FORMAT)}</p>
       </div>
-      <Tags tags={tags} showAll />
+      <Tags lng={lng} tags={tags} showAll />
       <section className="w-full border-normal rounded border-primary-dark bg-white p-4 overflow-hidden">
         <Markdown 
           className='prose w-full max-w-none p-4 overflow-hidden'

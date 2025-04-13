@@ -1,7 +1,8 @@
 import { DEFAULT_DATE_FORMAT, RECENT_POSTS_COUNT } from '@/common/constants';
 import dayjs from 'dayjs';
 import Link from 'next/link';
-import { PostType } from '@/app/post/post.type';
+import { PostType } from '@/app/[lng]/post/post.type';
+import { getTranslation } from '@/i18n';
 
 async function getRecentTIL() {
   try {
@@ -19,7 +20,12 @@ async function getRecentTIL() {
   }
 }
 
-const RecentTIL = async () => {
+interface RecentTILProps {
+  lng: string;
+}
+
+const RecentTIL = async ({ lng }: RecentTILProps) => {
+  const { t } = await getTranslation(lng, 'common');
   const tilPosts = await getRecentTIL();
 
   return (
@@ -28,7 +34,7 @@ const RecentTIL = async () => {
         {tilPosts && tilPosts.length > 0 ? (
           tilPosts.map((post: PostType) => (
             <Link 
-              href={`/post/${post.postId}`}
+              href={`/${lng}/post/${post.postId}`}
               key={post.postId}
               className='w-full border-normal rounded border-primary-dark bg-white p-3 sm:p-4 hover:bg-gray-50 shadow-sm hover:shadow-md transition-shadow'
             >
@@ -44,10 +50,10 @@ const RecentTIL = async () => {
         )}
       </div>
       <Link 
-        href="/til" 
+        href={`/${lng}/til`} 
         className="self-start px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm"
       >
-        모든 TIL 보기
+        {t('post.readMore')}
       </Link>
     </div>
   );
