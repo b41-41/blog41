@@ -2,6 +2,7 @@ import { TIL_TAG } from '@/common/constants';
 import { MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
+import { languages } from '@/i18n/settings';
 
 export async function GET(request: NextRequest) {
   try {
@@ -22,6 +23,29 @@ export async function GET(request: NextRequest) {
       .find(query)
       .sort({ createdAt: -1 })
       .toArray();
+      
+    // 다국어 지원 필드 추가
+    posts.forEach(post => {
+      if (!post.originalLanguage) {
+        post.originalLanguage = 'ko';
+      }
+      
+      if (!post.availableLanguages) {
+        post.availableLanguages = ['ko'];
+      }
+      
+      if (!post.translations) {
+        post.translations = {
+          ko: {
+            title: post.title,
+            description: post.description || '',
+            content: post.content,
+            tags: post.tags || [],
+            isComplete: true
+          }
+        };
+      }
+    });
 
     await client.close();
     

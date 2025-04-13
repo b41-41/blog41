@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
+import { languages } from '@/i18n/settings';
 
 export async function GET(request: NextRequest) {
   try {
@@ -19,7 +20,29 @@ export async function GET(request: NextRequest) {
     const urlParts = request.url.split('/');
     const id = urlParts[urlParts.length - 1];
     
+    // 포스트 조회
     const post = await db.collection('posts').findOne({ postId: id });
+    
+    // 다국어 지원 필드 추가
+    if (post && !post.originalLanguage) {
+      post.originalLanguage = 'ko';
+    }
+    
+    if (post && !post.availableLanguages) {
+      post.availableLanguages = ['ko'];
+    }
+    
+    if (post && !post.translations) {
+      post.translations = {
+        ko: {
+          title: post.title,
+          description: post.description || '',
+          content: post.content,
+          tags: post.tags || [],
+          isComplete: true
+        }
+      };
+    }
     console.log('포스트 조회 결과:', post ? '성공' : '실패', 'id:', id);
 
     await client.close();

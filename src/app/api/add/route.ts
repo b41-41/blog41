@@ -2,6 +2,7 @@ import { MongoClient, ObjectId } from 'mongodb';
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
+import { languages } from '@/i18n/settings';
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,6 +23,19 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    
+    // 다국어 필드 검증 및 기본값 설정
+    const originalLanguage = postData.originalLanguage || 'ko';
+    const availableLanguages = postData.availableLanguages || ['ko'];
+    const translations = postData.translations || {
+      ko: {
+        title: postData.title,
+        description: postData.description || '',
+        content: postData.content,
+        tags: postData.tags || [],
+        isComplete: true
+      }
+    };
     
     // 가장 최근 order 값 가져오기
     const latestPost = await db.collection('posts')
@@ -46,7 +60,11 @@ export async function POST(request: NextRequest) {
       tags: postData.tags || [],
       order: nextOrder,
       createdAt: new Date(postData.createdAt) || new Date(),
-      deleted: false
+      deleted: false,
+      // 다국어 필드 추가
+      originalLanguage,
+      availableLanguages,
+      translations
     };
     
     // 데이터베이스에 저장
