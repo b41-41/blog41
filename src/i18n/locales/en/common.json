@@ -6,10 +6,12 @@
   },
   "post": {
     "readMore": "Read More",
-    "publishedOn": "Published on",
+    "publishedOn": "Published On",
     "tags": "Tags",
     "relatedPosts": "Related Posts",
-    "comments": "Comments"
+    "comments": "Comments",
+    "notAvailableInLanguage": "This post is not available in English.",
+    "viewInOtherLanguage": "Click the button below to view it in another language."
   },
   "language": {
     "ko": "한국어",

@@ -9,7 +9,9 @@
     "publishedOn": "公開日",
     "tags": "タグ",
     "relatedPosts": "関連記事",
-    "comments": "コメント"
+    "comments": "コメント",
+    "notAvailableInLanguage": "この投稿は日本語で書かれていません。",
+    "viewInOtherLanguage": "他の言語で確認するには、下のボタンをクリックしてください。"
   },
   "language": {
     "ko": "한국어",
