@@ -7,8 +7,8 @@ import WriteButton from '@/common/WriteButton';
 import { Suspense } from 'react';
 import Loading from '../loading';
 
-export async function generateMetadata({ params }: { params: { lng: string } }): Promise<Metadata> {
-  const { lng } = params;
+export async function generateMetadata({ params }: { params: Promise<{ lng: string }> }): Promise<Metadata> {
+  const { lng } = await params;
   const { t } = await getTranslation(lng, 'common');
 
   return {
@@ -24,13 +24,14 @@ export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
 }
 
-export default function LngLayout({
+export default async function LngLayout({
   children,
-  params: { lng },
+  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lng: string };
+  params: Promise<{ lng: string }>;
 }>) {
+  const { lng } = await params;
   return (
     <>
       <Header lng={lng} />

@@ -6,14 +6,14 @@ import TableOfContents from '@/components/TableOfContents';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     id: string;
     lng: string;
-  }
+  }>
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const { id, lng } = params;
+  const { id, lng } = await params;
 
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post/${id}`, {
