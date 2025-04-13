@@ -14,8 +14,7 @@
   "language": {
     "ko": "한국어",
     "en": "English",
-    "ja": "日本語",
-    "select": "Select Language"
+    "ja": "日本語"
   },
   "common": {
     "loading": "Loading...",
