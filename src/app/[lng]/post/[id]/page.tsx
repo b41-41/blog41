@@ -77,8 +77,6 @@ export default async function PostPage({ params }: PostPageProps) {
           content={postData.content}
           createdAt={post.createdAt}
           lng={lng}
-          originalLanguage={originalLanguage}
-          availableLanguages={availableLanguages}
         />
       </>
     );

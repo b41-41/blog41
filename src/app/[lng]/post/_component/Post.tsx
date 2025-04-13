@@ -24,32 +24,15 @@ const Post = async ({
   createdAt, 
   lng,
   postId,
-  originalLanguage,
-  availableLanguages
 }: PostProps & { lng: string }) => {
   const { t } = await getTranslation(lng, 'common');
   
-  const postOriginalLanguage = originalLanguage || 'ko';
-  const postAvailableLanguages = availableLanguages || ['ko'];
-
   return (
     <article className="flex w-full flex-col items-center justify-center gap-4 py-4 relative">
       <div className="border-normal flex w-full flex-col items-center justify-center gap-4 rounded border-primary-dark bg-white p-4 overflow-hidden relative">
         <h1 className="text-4xl font-bold text-gray-900 break-words w-full text-center">{title}</h1>
         <p className="text-2xl text-gray-800 break-words w-full text-center">{description}</p>
         <p className="text-xl text-gray-700 break-words w-full text-center">{t('post.publishedOn')}: {formatToLocalTime(createdAt, DEFAULT_DATE_FORMAT)}</p>
-        
-        <div className="flex flex-wrap gap-2 justify-center mt-2">
-          {postAvailableLanguages.map(lang => (
-            <span 
-              key={lang}
-              className={`px-3 py-1 rounded-full text-sm ${lang === postOriginalLanguage ? 'bg-blue-100 text-blue-800 border border-blue-300' : 'bg-green-100 text-green-800 border border-green-300'}`}
-            >
-              {t(`language.${lang}`)}
-              {lang === postOriginalLanguage && ` (${t('translations.original')})`}
-            </span>
-          ))}
-        </div>
       </div>
       <Tags lng={lng} tags={tags} showAll />
       <div className="w-full relative">
