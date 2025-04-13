@@ -243,43 +243,65 @@ export default function AddPostForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // 현재 데이터 저장
-    if (currentLanguage === originalLanguage) {
-      // 원본 언어인 경우 원본 데이터 업데이트
-      setOriginalData({
-        title,
-        description,
-        content,
-        tags: [...selectedTags]
-      });
-    } else {
-      // 번역 언어인 경우 translations에 저장
-      saveCurrentLanguageData();
-    }
-    
-    // 원본 언어의 데이터 필수 값 확인
-    const originalTitle = currentLanguage === originalLanguage ? title : originalData.title;
-    const originalContent = currentLanguage === originalLanguage ? content : originalData.content;
-    
-    if (!originalTitle || !originalContent) {
+    // 현재 입력 필드의 데이터 검증
+    if (!title || !content) {
       alert(t('post.titleAndContentRequired') || '제목과 내용은 필수입니다.');
       return;
     }
     
+    // 현재 언어 데이터 저장
+    let updatedOriginalData = originalData;
+    let updatedTranslations = { ...translations };
+    
+    // 현재 언어가 원본 언어인 경우
+    if (currentLanguage === originalLanguage) {
+      // 원본 언어인 경우 원본 데이터 업데이트
+      updatedOriginalData = {
+        title,
+        description,
+        content,
+        tags: [...selectedTags]
+      };
+      
+      // 원본 언어도 translations에 추가
+      updatedTranslations[originalLanguage] = {
+        title,
+        description,
+        content,
+        tags: [...selectedTags],
+        isComplete: true
+      };
+    } else {
+      // 번역 언어인 경우 translations에 저장
+      const isComplete = Boolean(title && content);
+      updatedTranslations[currentLanguage] = {
+        title,
+        description,
+        content,
+        tags: [...selectedTags],
+        isComplete
+      };
+      
+      // 사용 가능한 언어 업데이트
+      if (!availableLanguages.includes(currentLanguage) && isComplete) {
+        setAvailableLanguages(prev => [...prev, currentLanguage]);
+      }
+    }
     setIsLoading(true);
     
     try {
       // 다국어 정보를 포함한 데이터 구성
       const postData = {
-        title: originalData.title,
-        description: originalData.description,
-        content: originalData.content,
-        tags: originalData.tags,
+        title: currentLanguage === originalLanguage ? title : originalData.title,
+        description: currentLanguage === originalLanguage ? description : originalData.description,
+        content: currentLanguage === originalLanguage ? content : originalData.content,
+        tags: currentLanguage === originalLanguage ? selectedTags : originalData.tags,
         createdAt: selectedDate.toISOString(),
         originalLanguage,
-        availableLanguages,
-        translations
+        availableLanguages: [...new Set([...availableLanguages, originalLanguage, currentLanguage])],
+        translations: updatedTranslations
       };
+      
       
       await axios.post('/api/add', postData);
       
