@@ -19,11 +19,11 @@ async function getTilPosts() {
 }
 
 interface TILPageProps {
-  params: { lng: string };
+  params: Promise<{ lng: string }>;
 }
 
 export default async function TILPage({ params }: TILPageProps) {
-	const { lng } = params;
+	const { lng } = await params;
 	const { t } = await getTranslation(lng, 'common');
 	const tilPosts = await getTilPosts();
 
