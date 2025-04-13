@@ -23,19 +23,20 @@ const LanguageSwitcher = ({ lng }: LanguageSwitcherProps) => {
   };
 
   return (
-    <div className="flex flex-row items-center gap-2 rounded-lg bg-white p-2 shadow-sm">
-      <div className="flex flex-row gap-2">
+    <div className="flex flex-row items-center gap-1 sm:gap-2 rounded-lg bg-white p-1 sm:p-2 shadow-sm">
+      <div className="flex flex-row gap-1 sm:gap-2">
         {languages.map((language) => (
           <button
             key={language}
             onClick={() => handleLanguageChange(language)}
-            className={`rounded px-2 py-1 text-sm ${
+            className={`rounded px-1 sm:px-2 py-0.5 sm:py-1 text-xs sm:text-sm ${
               language === lng
                 ? 'bg-primary-dark text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
-            {t(`language.${language}`)}
+            <span className="hidden sm:inline">{t(`language.${language}`)}</span>
+            <span className="sm:hidden">{language.toUpperCase()}</span>
           </button>
         ))}
       </div>
