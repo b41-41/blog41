@@ -45,6 +45,10 @@
     "retry": "Retry",
     "close": "Close"
   },
+  "tag": {
+    "title": "Tag",
+    "noPosts": "No posts with tag '%s'"
+  },
   "translations": {
     "complete": "Complete",
     "partial": "Partial",

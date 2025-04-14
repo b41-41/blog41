@@ -2,7 +2,6 @@ import { TIL_TAG } from '@/common/constants';
 import { MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
 import { NextRequest } from 'next/server';
-import { languages } from '@/i18n/settings';
 
 export async function GET(request: NextRequest) {
   try {
@@ -18,11 +17,20 @@ export async function GET(request: NextRequest) {
     const searchParams = new URL(request.url).searchParams;
     const page = parseInt(searchParams.get('page') || '1');
     const count = parseInt(request.headers.get('count') || '10');
+    const tag = searchParams.get('tag');
     
-    // "TIL" 태그가 없는 게시물만 필터링하는 쿼리 조건
-    const query = { tags: { $ne: TIL_TAG }, deleted: { $ne: true } };
+    // 쿼리 조건 설정
+    let query: any = { deleted: { $ne: true } };
     
-    // 전체 게시물 수 계산 (TIL 태그 제외)
+    // 태그 파라미터가 있으면 해당 태그를 포함하는 포스트만 필터링
+    if (tag) {
+      query.tags = tag;
+    } else {
+      // 기본적으로는 TIL 태그가 없는 게시물만 필터링
+      query.tags = { $ne: TIL_TAG };
+    }
+    
+    // 전체 게시물 수 계산 (필터링된 쿼리 적용)
     const totalPosts = await db.collection('posts').countDocuments(query);
     const totalPages = Math.ceil(totalPosts / count);
     

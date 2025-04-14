@@ -45,6 +45,10 @@
     "retry": "再試行",
     "close": "閉じる"
   },
+  "tag": {
+    "title": "タグ",
+    "noPosts": "'%s'タグの投稿はありません。"
+  },
   "translations": {
     "complete": "完全",
     "partial": "部分的",

@@ -51,6 +51,10 @@
     "cancel": "취소",
     "showMore": "더 보기"
   },
+  "tag": {
+    "title": "태그",
+    "noPosts": "'%s' 태그가 있는 게시물이 없습니다."
+  },
   "translations": {
     "complete": "번역 완료",
     "partial": "부분 번역",
