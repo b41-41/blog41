@@ -4,6 +4,13 @@ import { NextRequest } from 'next/server';
 import { languages } from '@/i18n/settings';
 
 export async function PUT(request: NextRequest) {
+  // 로컬 환경에서만 API 사용 가능하도록 제한
+  if (process.env.NODE_ENV !== 'development') {
+    return NextResponse.json(
+      { message: '이 API는 개발 환경에서만 사용 가능합니다.' },
+      { status: 403 }
+    );
+  }
   try {
     const client = await MongoClient.connect(process.env.NEXT_PUBLIC_DB_URL as string, {
       auth: {
