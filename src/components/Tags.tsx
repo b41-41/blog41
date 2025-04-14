@@ -16,21 +16,24 @@ async function getTags() {
 
 interface TagsProps {
   tags?: string[];
-  showAll?: boolean;
   lng: string;
 }
 
-const Tags = async ({ tags, showAll = false, lng }: TagsProps) => {
+const Tags = async ({ tags, lng }: TagsProps) => {
   const { t } = await getTranslation(lng, 'common');
   const allTags = await getTags();
   const tagsMap = tags || allTags || [];
 
   return (
-    <div className="border-normal rounded-middle flex w-full flex-wrap gap-2 border-primary-dark bg-white p-2">
-      {(showAll ? tagsMap : tagsMap.slice(0, 20)).map((tag: string) => (
-        <Tag key={tag} text={tag} lng={lng} />
-      ))}
-      {!showAll && tagsMap.length > 20 && <Tag key="etc." text="..." lng={lng} />}
+    <div className="border-normal rounded-middle w-full border-primary-dark bg-white p-2 overflow-hidden whitespace-nowrap">
+      <div className="inline-flex gap-2 animate-slide pause-on-hover">
+        {tagsMap.map((tag: string) => (
+          <Tag key={tag} text={tag} lng={lng} />
+        ))}
+        {tagsMap.length > 0 && tagsMap.map((tag: string) => (
+          <Tag key={`dup-${tag}`} text={tag} lng={lng} />
+        ))}
+      </div>
     </div>
   );
 };

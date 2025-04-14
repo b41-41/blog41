@@ -94,12 +94,17 @@ export default {
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
         },
+        slideLeftToRight: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         carMove: 'carMove 3s ease-in-out forwards',
         scaleMove: 'scaleMove 3s ease-in-out forwards',
         shakeMove: 'shakeMove 3s ease-in-out forwards',
         'gradient-slow': 'gradient 3s ease-in-out infinite',
+        'slide': 'slideLeftToRight 150s linear infinite',
       },
       typography: {
         DEFAULT: {
@@ -178,5 +183,13 @@ export default {
   },
   plugins: [
     typography,
+    function({ addUtilities }: { addUtilities: any }) {
+      const newUtilities = {
+        '.pause-on-hover:hover': {
+          'animation-play-state': 'paused',
+        },
+      }
+      addUtilities(newUtilities)
+    },
   ],
 } satisfies Config;
