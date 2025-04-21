@@ -88,7 +88,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
         <div className="flex items-center">
           <h3 className="text-xs font-medium">Contents</h3>
         </div>
-        <span className="text-xs font-bold ml-2">{isOpen ? '▲' : '▼'}</span>
+        <span className="text-xs font-bold ml-2">{isOpen ? '▼' : '▲'}</span>
       </div>
 
       {isOpen && (
@@ -104,8 +104,6 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ content }) => {
                   ${activeId === item.id ? 'text-primary-dark font-medium' : 'text-gray-700 hover:text-primary-dark'}
                   cursor-pointer
                   transition-colors
-                  border-l
-                  ${activeId === item.id ? 'border-primary-dark' : 'border-transparent'}
                 `}
                 onClick={() => scrollToHeading(item.id)}
               >
